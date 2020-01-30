@@ -1,3 +1,287 @@
+# Python_chap3_01
+
+20.01.22
+
+***
+
+## Function 함수
+
+
+
+### parameter(매개변수) & argument(인자, 전달인자)
+
+> def func(__x__)  x: 매개변수
+>
+> func(__2__)         2 : 인자 argument
+
+#### parameter
+
+def func(x):
+ return x + 2
+x 는 매개변수
+함수의 정의 부분에서 볼 수 있다.
+
+#### rgument
+
+func(2)
+2 는 인자
+함수를 호출하는 부분에서 볼 수 있다.
+
+
+
+***
+
+<img src="https://user-images.githubusercontent.com/18046097/61181741-2984fd80-a665-11e9-93b8-578c56689d0e.png" alt="programming principle" style="zoom:50%;" />
+
+
+
+<img src="https://user-images.githubusercontent.com/18046097/61181750-2ab62a80-a665-11e9-84f3-c2445c098a18.png" alt="programming principle" style="zoom: 33%;" />
+
+***
+
+__YAGNI : You ain't gonna need it ->쓸데없는거 미리 만들지마라 야근한다.__
+
+***
+
+
+
+### 함수의 선언과 호출
+
+* 함수 선언은 def로 시작하여 :으로 끝나고, 다음은 4spaces 들여쓰기로 코드 블록을 만든다.
+* 함수는 매개변수(parameter)를 넘겨줄 수도 있다.
+* 함수는 동작후에 return을 통해 결과값을 전달 할 수도 있다. (return 값이 없으면, None을 반환한다.)
+* 함수는 호출을 func() / func(val1, val2)와 같이 한다.
+
+> 활용법
+> def func(parameter1, parameter2):
+>     code line1
+>     code line2
+>     return value
+
+<img src="https://user-images.githubusercontent.com/18046097/61181742-2984fd80-a665-11e9-9d5c-c90e8c64953e.png" alt="function descrpition" style="zoom:70%;" />
+
+```python
+#사각형 코드
+def rect(height,width):
+    area = height*width
+    perimeter = height*2+width*2
+    return area, perimeter
+    
+a,p =rect(20,30)
+print(f'직사각형 둘레: {p}, 면적: {a}입니다.')
+```
+
+<img src="https://dl.dropbox.com/s/o6v9c0vxpdww1lm/function-argument.png" alt="function_example" style="zoom:30%;" />
+
+
+
+### 내장함수
+
+내장함수 목록 확인 방법 :dir(__ __builtins____)
+
+ex) print()
+
+![built_in](https://user-images.githubusercontent.com/18046097/61181739-2984fd80-a665-11e9-991b-f2f058397a69.png)
+
+#### 함수를 만들어봅시다
+
+> 아래의 코드와 동일한 my_max 함수를 만들어주세요.
+> 정수를 두개 받아서, 큰 값을 출력합니다. 
+> max(1, 5)
+
+예시 출력)
+5가 더 큽니다
+
+```python
+def my_max(a,b):
+#     if a> b :
+#         print(f'{a}가 더 큽니다')
+#         return a
+#     else :
+#         print(f'{b}가 더 큽니다')
+#         return b
+    return a if a > b else b
+```
+
+```python
+# 조건표현식
+def my_max(a,b,c):
+    return a if a > b else b if 조건 else value ... 무한정으로 줄 수 있다.
+```
+
+
+
+
+
+
+
+### 함수의 return
+
+앞서 설명한 것과 마찬가지로 함수는 반환되는 값이 있으며, 이는 어떠한 종류의 객체여도 상관없습니다. 
+단, __오직 한 개의 객체만 반환__됩니다.
+함수가 return 되거나 종료되면, 함수를 호출한 곳으로 돌아갑니다.
+
+__함수에 return값 없으면 None이 return됨__
+
+__반환될 때  값은 튜플 형태로 감싸져서 반환됨__
+
+
+
+#### 함수 정의하고 값 반환
+
+> 리스트 두개를 받아 각각 더한 결과를 비교하여 값이 큰 리스트를 반환하는 함수를 만들어주세요.
+> my_list_max([10, 3], [5, 9])
+
+예시 출력)
+[5, 9]
+
+```
+#조건 표현식
+def my_list_max(list1,list2):
+    return list1 if sum(list1)>sum(list2) else list2
+```
+
+```
+def my_list_max(list1,list2):
+    if sum(list1) > sum(list2) :
+        return list1
+    else :
+        return list2
+    
+```
+
+
+
+
+
+### 기본 인자 값 (Default Argument Values) -함수에 값 지정 안해도 될때
+
+함수가 호출될 때, 인자를 지정하지 않아도 기본 값을 설정할 수 있습니다. 
+
+활용법
+def func(p1=v1):
+    return p1
+
+> 기본 값 활용 예제
+> 이름을 받아서 다음과 같이 인사하는 함수 greeting을 작성하세요. 이름이 길동이면, "길동, 안녕?" 이름이 없으면 "익명, 안녕?" 으로 출력하세요.
+
+```python
+def greeting(name = '익명'):    #name의 defualt 값이 '익명'이다.
+    return f'{name}, 안녕?'
+
+#name = input('이름이 뭔가용?')
+greeting('길동')
+greeting()
+```
+
+* 기본 인자 값이 설정되어 있더라도 기존의 함수와 동일하게 호출 가능하다.
+
+  <img src="https://user-images.githubusercontent.com/18046097/61181744-2a1d9400-a665-11e9-9095-6924ca11122e.png" alt="img" style="zoom:50%;" />
+
+* 호출시 인자가 없으면 기본 인자 값이 활용된다.
+
+<img src="https://user-images.githubusercontent.com/18046097/61181745-2a1d9400-a665-11e9-95ef-e50e463e1583.png" alt="function example 03" style="zoom:50%;" />
+
+* 단, 기본 인자 이후에 기본 값이 없는 인자를 사용할 수는 없습니다. -> b이후의 인자들은 기본값이 있어야!!!!
+
+```python
+#올바른 예시1
+def greeting(age, name ='sh'):
+    return f'{name}의 나이는 {age}입니다.'
+#올바른 예시2
+def greeting(name ='sh',age=10):
+    return f'{name}의 나이는 {age}입니다.'
+
+greeting(19,'kim')
+
+
+Out[29]:
+'kim의 나이는 19입니다.'
+
+```
+
+```python
+#틀린 예시
+def greeting( name ='sh', age): #기본 인자 이후에 기본 값이 없는 인자(age)를 사용할 수는 없습니다.
+    return f'{name}의 나이는 {age}입니다.'
+
+greeting('kim',19)
+
+
+  File "<ipython-input-30-99d52e1e2ac7>", line 2
+    def greeting( name ='sh', age):
+                 ^
+SyntaxError: non-default argument follows default argument
+
+
+```
+
+
+
+### 키워드 인자(Keyword Arguments)
+
+#### 키워드 인자와 기본인자의 차이점 : 
+
+#### 키워드 인자 : 함수를 호출할 때 ''매개변수 = 값'' 쓴다 vs 기본인자 : 함수를 정의(선언)할 때 ''매개변수 = 값''미리 기본값 설정 가능(중요)
+
+--> Tip : 너무 ''키워드''인자라는 이름에 집착하지 말고 사용을 통해 느낌 익히기.
+
+키워드 인자로만 들어갈 때는 순서가 중요 X
+
+#### 키워드인자와 위치인자가 같이 호출 될 때 문제가 생김!!!!!!!!!!!!!!!(중요)
+
+___요약 : 위치 인자 + 키워드 인자 (O) __
+			__키워드 인자 + 위치 인자 (X)__
+
+
+
+* 키워드 인자는 직접 변수의 이름으로 특정 인자를 전달할 수 있습니다.
+
+```
+greeting(name='승희',age='25')
+
+
+Out[32]:
+'승희의 나이는 25입니다.'
+```
+
+* 보통은 위치 위주가 기본이지만 __이렇게 직접 다 매개변수의 이름으로 인자들을 전달해준다면 틀린 예시의 greeting함수로도 사용이 가능하다.__
+
+
+
+* 단 아래와 같이 키워드 인자를 활용한 뒤에 위치 인자를 활용할 수는 없습니다.
+* __키워드 인자 + 위치 인자 (X)__
+* __위치 인자 + 키워드 인자 (O) __
+
+```python
+greeting(age=24, '철수')
+
+File "<ipython-input-31-216dd4cbaccf>", line 2
+    greeting(age=24, '철수')
+                    ^
+SyntaxError: positional argument follows keyword argument
+
+```
+
+
+
+***
+
+## 중요
+
+#### 1. 키워드 인자와 기본인자의 차이점 : 
+
+#### 키워드 인자 : 함수를 호출할 때 ''매개변수 = 값'' 쓴다 vs 기본인자 : 함수를 정의(선언)할 때 ''매개변수 = 값''미리 기본값 설정 가능(중요)
+
+#### 2. 키워드인자와 위치인자가 같이 호출 될 때 문제가 생김!!!!!!!!!!!!!!!(중요)
+
+___요약 : 위치 인자 + 키워드 인자 (O) __
+			__키워드 인자 + 위치 인자 (X)__
+
+
+
+***
+
 # Python_chap3_02
 
 20.10.23
@@ -22,8 +306,8 @@ print('abcdf', end='\t')
 
 * 보통 위치 인자(그냥 함수 매개변수의 인자를 아무것도 선언안하면 자동으로 위치별로 인식)
 * 그래서 키워드 인자와 위치 인자를 둘 다 쓸꺼면 키워드인자는 무조건 맨 뒤에 와야한다.
-*  age, name 둘 다 키워드 인자로 넣던지, 하나만 키워드 인자로 할 꺼면 맨 뒤에 넣던지.
-*  키워드 인자를 활용한 뒤에 위치 인자를 활용할 수는 없습니다.
+* age, name 둘 다 키워드 인자로 넣던지, 하나만 키워드 인자로 할 꺼면 맨 뒤에 넣던지.
+* 키워드 인자를 활용한 뒤에 위치 인자를 활용할 수는 없습니다.
 
 ```
 def greeting(age, name ='sh'):
@@ -125,6 +409,7 @@ def my_max(*args):
 
 > 활용법
 > def func(**kwargs):
+> 
 > **kwargs : 임의의 개수의 키워드 인자를 받음을 의미
 
 우리가 dictionary를 만들 때 사용할 수 있는 dict() 함수는 파이썬 표준 라이브러리의 내장함수 중 하나이며, 다음과 같이 구성되어 있습니다.
@@ -477,15 +762,15 @@ Out[117]:
 변수에서 값을 찾을 때 아래와 같은 순서대로 이름을 찾아나갑니다.
 
 * `L`ocal scope: 정의된 함수
-* `E`nclosed scope: 상위 함수 
+* `E`nclosed scope: 상위 함수  (함수 안에 함수가 있는 경우)
 * `G`lobal scope: 함수 밖의 변수 혹은 import된 모듈
-* `B`uilt-in scope: 파이썬안에 내장되어 있는 함수 또는 속성
+* `B`uilt-in scope: 파이썬안에 내장되어 있는 함수 또는 속성(내장)
 
-
+-->작은 범위에서 넓은 범위로 값을 찾아나감
 
 ```python
-str = 4
-str(5) #나중에 del str해줘야 scope에서 지워짐-> 나중에 변수로 쓸 수 있다.
+str = 4 # str을 변수로 정해버림
+str(5) #내장함수 str을 쓰려면 나중에 이미 변수로 정해버린 str을 del str해줘야 scope에서 지워짐-> 나중에 변수로 쓸 수 있다.
 
 #str은 변수인데 함수로 호출하려니까 4번 not callable
 ---------------------------------------------------------------------------
@@ -622,9 +907,9 @@ __두 코드 모두 원리는 같다! __
 
 
 > 재귀함수는 기본적으로 같은 문제이지만 점점 범위가 줄어드는 문제를 풀게 된다.
-> 재귀함수를 작성시에는 반드시, base case가 존재 하여야 한다. 
+> 재귀함수를 작성시에는 반드시, `base case`가 존재 하여야 한다. 
 > base case는 점점 범위가 줄어들어 반복되지 않는 최종적으로 도달하는 곳이다. 
-> 재귀를 이용한 팩토리얼 계산에서의 base case는 n이 1일때, 함수가 아닌 정수 반환하는 것이다.
+> 재귀를 이용한 팩토리얼 계산에서의 `base case`는 n이 1일때, 함수가 아닌 정수 반환하는 것이다.
 
 > 자기 자신을 호출하는 재귀함수는 알고리즘 구현시 많이 사용된다.
 > 코드가 더 직관적이고 이해하기 쉬운 경우가 있다. (하지만, 만들기는 어려움)
@@ -752,6 +1037,7 @@ __개수가 정해지지 않은 임의의 인자를 받기 위해서__는 가변
 
 > 활용법
 > def func(**kwargs):
+> 
 > **kwargs : 임의의 개수의 키워드 인자를 받음을 의미
 
 ex) dict_a = dict(한국어 = '안녕', 영어 = 'hi') -> 키워드 인자(A = 'b') 2개인 것을 알 수 있다.
@@ -769,3 +1055,31 @@ ex) dict_a = dict(한국어 = '안녕', 영어 = 'hi') -> 키워드 인자(A = '
 ### 4. 인자 리스트 언패킹
 
 : 포장지로 감싸진 리스트나 튜플의 포장지를 벗겨서 인자를 하나씩 줘서 처리할 수 있다.
+
+
+
+### 5. *의 사용 2가지 -가변인자리스트와 인자 리스트 언패킹의 차이점
+
+#### 함수 정의할 때 별* 붙어있으면 :  가변인자리스트
+
+#### 함수 호출할 떄 별* 붙어있으면 : 언패킹
+
+
+
+### 6. 이름공간(namespace)
+
+파이썬에서 사용되는 이름들은 이름공간(namespce)에 저장되어 있습니다.
+그리고,` LEGB Rule` 을 가지고 있습니다. 
+
+
+
+### 7. 재귀 함수(recursive function)
+
+단점 : 시간 많이 걸리고, 메모리도 많이 든다. - > 호출할 수록 느려지고 자칫 잘못하면 무한루프에 빠짐
+
+장점 : 코드가 심플, 가독성이 좋다
+
+재귀함수는 기본적으로 같은 문제이지만 점점 범위가 줄어드는 문제를 풀게 된다.
+재귀함수를 작성시에는 반드시,` base case`가 존재 하여야 한다. 
+base case는 점점 범위가 줄어들어 반복되지 않는 최종적으로 도달하는 곳이다. 
+재귀를 이용한 팩토리얼 계산에서의 `base case`는 n이 1일때, 함수가 아닌 정수 반환하는 것이다.
